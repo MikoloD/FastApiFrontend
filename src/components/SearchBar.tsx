@@ -7,10 +7,10 @@ import CssBaseline from '@mui/material/CssBaseline';
 
 const darkTheme = createTheme({
     palette: {
-      mode: 'dark',
+        mode: 'dark',
     },
-  });
-  
+});
+
 const GetDataFromAPI = () => {
     const [songs, setSongs] = useState<ISong[]>([]);
 
@@ -19,39 +19,37 @@ const GetDataFromAPI = () => {
             headers: {
                 'Access-Control-Allow-Origin': '*',
             },
-        }).then((response) => {
+        })
+            .then((response) => {
                 return response.json();
             })
             .then((data) => {
-                console.log(data)
                 setSongs(data);
             });
     };
 
     return (
         <ThemeProvider theme={darkTheme}>
-        <CssBaseline />
-            <div>
-            <h3>Search STH</h3>
-            <Autocomplete
-                style={{ width: 300,color: 'white' }}
-                freeSolo
-                autoComplete
-                autoHighlight
-                options={songs.map(song => song.artist+" "+song.name)}
-
-                renderInput={(params) => (
-                    <TextField
-                        {...params}
-                        onChange={getDataFromAPI}
-                        variant="outlined"
-                        label="Search Box"
-                    />
-                )}
-            />      
-
-        </div>
+            <CssBaseline />
+            <div style={{marginBottom: 30}}>
+                <h3>Search For Your Song</h3>
+                <Autocomplete
+                    freeSolo
+                    autoComplete
+                    autoHighlight
+                    options={songs.map((song) => song.artist + ' ' + song.name)}
+                    renderInput={(params) => (
+                        <TextField
+                            {...params}
+                            onChange={getDataFromAPI}
+                            variant="outlined"
+                            label="Search Box"
+                        />
+                    )}                   
+                />
+            </div>          
         </ThemeProvider>
+
     );
 };
 

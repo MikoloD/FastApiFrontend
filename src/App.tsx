@@ -1,23 +1,19 @@
 import logo from './assets/logo.svg';
 import styles from './App.module.scss';
-import SearchBar from './components/SearchBar';
+import SearchBar from './components/SearchBar'
+import Recomendation from './components/Recomendation';
 
 function App() {
     return (
-        <div className={styles.App}>
-            <header className={styles['App-header']}>
-                <img src={logo} className={styles['App-logo']} alt="logo" />
-                <SearchBar />
-                <a
-                    className={styles['App-link']}
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
-        </div>
+
+                <div className={styles.App}>
+                    <header className={styles['App-header']}>
+                        <img src={logo} className={styles['App-logo']} alt="logo" />
+                        <SearchBar/>
+                        <Recomendation id = {65263}/>    
+                    </header>
+                </div> 
+
     );
 }
 
