@@ -2,7 +2,15 @@ import { useState } from 'react';
 import ISong from '../interfaces/ISong';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 
+const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+    },
+  });
+  
 const GetDataFromAPI = () => {
     const [songs, setSongs] = useState<ISong[]>([]);
 
@@ -21,8 +29,9 @@ const GetDataFromAPI = () => {
     };
 
     return (
-        <div>
-
+        <ThemeProvider theme={darkTheme}>
+        <CssBaseline />
+            <div>
             <h3>Search STH</h3>
             <Autocomplete
                 style={{ width: 300,color: 'white' }}
@@ -42,6 +51,7 @@ const GetDataFromAPI = () => {
             />      
 
         </div>
+        </ThemeProvider>
     );
 };
 
