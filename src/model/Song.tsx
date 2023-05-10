@@ -4,3 +4,7 @@ export default interface ISong {
     songId : number
     spotifyUri: string
   }
+export type SongViewModel = {
+  id : number
+  label: string
+}
