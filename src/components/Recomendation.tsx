@@ -20,7 +20,7 @@ const Recomendation = (props: any) => {
         'Access-Control-Allow-Origin': '*',},
     };
     const fetchSongData = async () => {
-        await fetch('http://localhost:8000/recommenderService/'+props.id,requestOptions)
+        await fetch('http://localhost:8000/recommenderService/'+props.songId,requestOptions)
             .then((response) => {
                 return response.json();
             })
