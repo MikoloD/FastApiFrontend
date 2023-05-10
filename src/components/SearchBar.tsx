@@ -13,9 +13,9 @@ const darkTheme = createTheme({
 });
 
 
-const GetDataFromAPI = () => {
+const GetDataFromAPI = ({onValueChange}: any) => {
     const [songs, setSongs] = useState<Song[]>([]);
-    const [value, setValue]= useState<string | SongViewModel | null>();  
+    const [value, setValue]= useState<SongViewModel>();  
 
     const getDataFromAPI = async () => {
         await fetch('http://localhost:8000/', {
@@ -35,8 +35,12 @@ const GetDataFromAPI = () => {
         songId: song.songId,
         label: song.artist+' '+song.name
     }))
-    
-    console.log({value})
+
+    const handleValueChange = (event : any, newValue: any) => {
+        setValue(newValue);
+        onValueChange(newValue); // call the callback function with the new value
+      };
+
     return (
         <ThemeProvider theme={darkTheme}>
             <CssBaseline />
@@ -56,7 +60,7 @@ const GetDataFromAPI = () => {
                         />
                     )}
                     value = {value}
-                    onChange={(event: any, newValue:string | SongViewModel | null) => setValue(newValue)}                   
+                    onChange={handleValueChange}                   
                 />
             </div>          
         </ThemeProvider>
