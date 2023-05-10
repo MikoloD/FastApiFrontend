@@ -10,7 +10,7 @@ function App() {
                     <header className={styles['App-header']}>
                         <img src={logo} className={styles['App-logo']} alt="logo" />
                         <SearchBar/>
-                        <Recomendation id = {65263}/>    
+                        <Recomendation songId = {65263}/>    
                     </header>
                 </div> 
 

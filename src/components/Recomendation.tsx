@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import ISong from '../model/Song';
+import Song from '../models/Song';
 import Button from '@mui/material/Button';
 import App_module from '../App.module.scss';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -13,7 +13,7 @@ const darkTheme = createTheme({
 });
 
 const Recomendation = (props: any) => {
-    const [songs, setSongs] = useState<ISong[]>([]);
+    const [songs, setSongs] = useState<Song[]>([]);
     const requestOptions = {
       method: 'GET',
       headers: {

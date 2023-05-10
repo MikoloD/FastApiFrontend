@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import ISong from '../model/Song';
+import Song from '../models/Song';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { SongViewModel } from '../model/Song';
+import { SongViewModel } from '../models/Song';
 
 const darkTheme = createTheme({
     palette: {
@@ -12,8 +12,9 @@ const darkTheme = createTheme({
     },
 });
 
+
 const GetDataFromAPI = () => {
-    const [songs, setSongs] = useState<ISong[]>([]);
+    const [songs, setSongs] = useState<Song[]>([]);
     const [value, setValue]= useState<string | SongViewModel | null>();  
 
     const getDataFromAPI = async () => {
@@ -31,7 +32,7 @@ const GetDataFromAPI = () => {
     };
     const songOptions=songs.map((song) =>
     ({
-        id: song.songId,
+        songId: song.songId,
         label: song.artist+' '+song.name
     }))
     
@@ -64,3 +65,4 @@ const GetDataFromAPI = () => {
 };
 
 export default GetDataFromAPI;
+
