@@ -25,7 +25,6 @@ const Recomendation = (props: any) => {
                 return response.json();
             })
             .then((data) => {
-                console.log(data)
                 setSongs(data);
             });
     };
