@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import ISong from '../interfaces/ISong';
+import ISong from '../model/Song';
 import Button from '@mui/material/Button';
 import App_module from '../App.module.scss';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
