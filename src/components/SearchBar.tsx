@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import ISong from '../interfaces/ISong';
+import ISong from '../model/Song';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import { SongViewModel } from '../model/Song';
 
 const darkTheme = createTheme({
     palette: {
@@ -13,6 +14,7 @@ const darkTheme = createTheme({
 
 const GetDataFromAPI = () => {
     const [songs, setSongs] = useState<ISong[]>([]);
+    const [value, setValue]= useState<string | SongViewModel | null>();  
 
     const getDataFromAPI = async () => {
         await fetch('http://localhost:8000/', {
@@ -27,7 +29,13 @@ const GetDataFromAPI = () => {
                 setSongs(data);
             });
     };
-
+    const songOptions=songs.map((song) =>
+    ({
+        id: song.songId,
+        label: song.artist+' '+song.name
+    }))
+    
+    console.log({value})
     return (
         <ThemeProvider theme={darkTheme}>
             <CssBaseline />
@@ -37,7 +45,7 @@ const GetDataFromAPI = () => {
                     freeSolo
                     autoComplete
                     autoHighlight
-                    options={songs.map((song) => song.artist + ' ' + song.name)}
+                    options={songOptions}
                     renderInput={(params) => (
                         <TextField
                             {...params}
@@ -45,7 +53,9 @@ const GetDataFromAPI = () => {
                             variant="outlined"
                             label="Search Box"
                         />
-                    )}                   
+                    )}
+                    value = {value}
+                    onChange={(event: any, newValue:string | SongViewModel | null) => setValue(newValue)}                   
                 />
             </div>          
         </ThemeProvider>
